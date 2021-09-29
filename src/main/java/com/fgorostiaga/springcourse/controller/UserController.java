@@ -30,7 +30,7 @@ public class UserController {
     public User getUser(@PathVariable int id) {
         User user = userService.findById(id);
         if (user == null) {
-            throw new UserNotFoundException(String.format("Invalid user id %d}", id));
+            throw new UserNotFoundException(String.format("Invalid user id %d", id));
         }
         return user;
     }

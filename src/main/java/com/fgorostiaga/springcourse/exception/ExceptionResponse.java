@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class ExceptionResponse {
 
-
     private Date timestamp;
     private String message;
     private String details;
@@ -38,4 +37,5 @@ public class ExceptionResponse {
     public void setDetails(String details) {
         this.details = details;
     }
+
 }
