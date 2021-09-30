@@ -2,14 +2,19 @@ package com.fgorostiaga.springcourse.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class User {
 
     private Integer id;
 
+    @Size(min = 2, max = 50)
     private String name;
 
+
+    @Past
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 

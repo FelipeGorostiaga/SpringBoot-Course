@@ -1,6 +1,7 @@
 package com.fgorostiaga.springcourse.exception;
 
 import java.util.Date;
+import java.util.List;
 
 public class ExceptionResponse {
 
@@ -8,12 +9,21 @@ public class ExceptionResponse {
     private String message;
     private String details;
     private int status;
+    private List<String> validationMessages;
 
     public ExceptionResponse(Date timestamp, String message, String details, int status) {
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
         this.status = status;
+    }
+
+    public ExceptionResponse(Date timestamp, String message, String details, int status, List<String> validationMessages) {
+        this.timestamp = timestamp;
+        this.message = message;
+        this.details = details;
+        this.status = status;
+        this.validationMessages = validationMessages;
     }
 
     public Date getTimestamp() {
@@ -46,5 +56,13 @@ public class ExceptionResponse {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public List<String> getValidationMessages() {
+        return validationMessages;
+    }
+
+    public void setValidationMessages(List<String> validationMessages) {
+        this.validationMessages = validationMessages;
     }
 }

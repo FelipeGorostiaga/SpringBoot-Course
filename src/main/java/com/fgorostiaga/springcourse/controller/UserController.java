@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 
         User createdUser = userService.create(user);
 
@@ -51,7 +52,12 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public int deleteUser(@PathVariable int id) {
-        return 0;
+    public void deleteUser(@PathVariable int id) {
+        int deleted = userService.delete(id);
+
+        if (deleted == 0) {
+            throw new UserNotFoundException(String.format("Invalid user id %d", id));
+        }
+        // no return gives back a status 200 by default
     }
 }
