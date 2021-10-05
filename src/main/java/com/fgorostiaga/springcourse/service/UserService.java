@@ -3,14 +3,15 @@ package com.fgorostiaga.springcourse.service;
 import com.fgorostiaga.springcourse.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
-    User findById(int id);
+    Optional<User> findById(long id);
 
     List<User> getUsers();
 
-    int delete(int id);
+    void delete(long id);
 
     User update(User user);
 

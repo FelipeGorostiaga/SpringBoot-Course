@@ -1,43 +1,42 @@
 package com.fgorostiaga.springcourse.service;
 
-import com.fgorostiaga.springcourse.dao.UserDao;
+import com.fgorostiaga.springcourse.dao.UserRepository;
 import com.fgorostiaga.springcourse.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserServiceImpl(@Autowired UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
-    public User findById(int id) {
-        return userDao.findById(id);
+    public Optional<User> findById(long id) {
+        return userRepository.findById(id);
     }
 
     @Override
     public List<User> getUsers() {
-        return userDao.getUsers();
+        return userRepository.findAll();
     }
 
     @Override
-    public int delete(int id) {
-        return userDao.delete(id);
+    public void delete(long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
     public User update(User user) {
-        return userDao.update(user);
+        return userRepository.save(user);
     }
 
     @Override
     public User create(User user) {
-        return userDao.create(user);
+        return userRepository.save(user);
     }
 }
